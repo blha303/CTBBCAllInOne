@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -19,6 +20,8 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 				.registerListener(new Chat());
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new Kick("bckick"));
+		ProxyServer.getInstance().getPluginManager()
+				.registerCommand(new Lobby("lobby"));
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new GSay("gsay"));
 	}
@@ -39,7 +42,7 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 		player.connect(server);
 	}
 
-	public ServerInfo getServerInfo(String server) {
+	public static ServerInfo getServerInfo(String server) {
 		return ProxyServer.getInstance().getServerInfo(server);
 	}
 
@@ -53,6 +56,11 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 
 	public static ProxiedPlayer getProxiedPlayed(String player) {
 		return ProxyServer.getInstance().getPlayer(player);
+	}
+
+	public static ProxiedPlayer getProxiedPlayed(CommandSender player) {
+		String pl = player.getName().toString();
+		return getProxiedPlayed(pl);
 	}
 
 }
