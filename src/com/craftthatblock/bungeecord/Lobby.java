@@ -14,7 +14,7 @@ public class Lobby extends Command {
 		this.name = name;
 	}
 
-	String lobby = "lobby";
+	String lobby = "Lobby";
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
