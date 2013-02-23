@@ -12,15 +12,14 @@ public class Chat implements Listener {
 
 	@Subscribe
 	public void onChat(ChatEvent e) {
-		String ms = e.getMessage();
+		String m = e.getMessage();
 
 		if (e.getSender() instanceof ProxiedPlayer) {
 			// if (ms.startsWith("#")) {
 
 			// Enter code to remove #
 
-			ms.replaceFirst("#", " ");
-			String m = ms;
+			// ms.replaceFirst("#", " ");
 
 			ProxiedPlayer pl = (ProxiedPlayer) e.getSender();
 
@@ -87,6 +86,15 @@ public class Chat implements Listener {
 
 			}
 
+			msg.replace("fuck", "****");
+			msg.replace("bitch", "*****");
+			msg.replace("nigger", "******");
+			msg.replace("ass", "***");
+			// msg.replace("fuck", "****");
+			// msg.replace("fuck", "****");
+			// msg.replace("fuck", "****");
+			// msg.replace("fuck", "****");
+
 			for (ProxiedPlayer p : ProxyServer.getInstance().getPlayers()) {
 				if (p.getServer().getInfo().getName() != pl.getServer()
 						.getInfo().getName()) {
@@ -94,7 +102,6 @@ public class Chat implements Listener {
 					p.sendMessage(ChatColor.RED + ">>" + ChatColor.RESET + msg);
 				}
 			}
-			// }
 		}
 	}
 }

@@ -21,27 +21,27 @@ public class GSay extends Command {
 		String prefix = ChatColor.GRAY + "[" + ChatColor.RED + "CTB"
 				+ ChatColor.GRAY + "]" + ChatColor.RESET + " ";
 		if (sender.hasPermission("chat.gsay") || sender.hasPermission("chat.*")) {
-			if (sender instanceof ProxiedPlayer) {
-				if (args.length == 0) {
-					sender.sendMessage(prefix + "Usage: /gsay <message>");
-				} else {
-					StringBuilder builder = new StringBuilder();
-
-					for (String s : args) {
-						builder.append(ChatColor.translateAlternateColorCodes(
-								'&', s));
-						builder.append(" ");
-					}
-
-					String message = builder.substring(0, builder.length() - 1);
-					for (ProxiedPlayer player : ProxyServer.getInstance()
-							.getPlayers()) {
-						player.sendMessage(prefix + message);
-					}
-				}
+			// if (sender instanceof ProxiedPlayer) {
+			if (args.length == 0) {
+				sender.sendMessage(prefix + "Usage: /gsay <message>");
 			} else {
+				StringBuilder builder = new StringBuilder();
 
+				for (String s : args) {
+					builder.append(ChatColor.translateAlternateColorCodes('&',
+							s));
+					builder.append(" ");
+				}
+
+				String message = builder.substring(0, builder.length() - 1);
+				for (ProxiedPlayer player : ProxyServer.getInstance()
+						.getPlayers()) {
+					player.sendMessage(prefix + message);
+				}
 			}
+			// } else {
+			//
+			// }
 		} else {
 			// If player has no permission.
 		}

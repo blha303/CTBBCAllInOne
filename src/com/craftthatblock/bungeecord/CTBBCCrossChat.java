@@ -19,9 +19,14 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 		ProxyServer.getInstance().getPluginManager()
 				.registerListener(new Chat());
 		ProxyServer.getInstance().getPluginManager()
+				.registerListener(new JoinQuit());
+		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new Kick("bckick"));
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new Lobby("lobby"));
+
+		ProxyServer.getInstance().getPluginManager()
+				.registerCommand(new Info("info"));
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new GSay("gsay"));
 	}
@@ -61,6 +66,12 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 	public static ProxiedPlayer getProxiedPlayed(CommandSender player) {
 		String pl = player.getName().toString();
 		return getProxiedPlayed(pl);
+	}
+
+	public static void broadcast(String msg) {
+		for (ProxiedPlayer pp : ProxyServer.getInstance().getPlayers()) {
+			pp.sendMessage(msg);
+		}
 	}
 
 }
