@@ -27,4 +27,38 @@ public class Name {
 		return finalmsg;
 	}
 
+	public String getDisplay(String pl) {
+		String prefix = getDisplay(pl, false);
+
+		return prefix;
+
+	}
+	
+
+	public String getDisplay(String pl, Boolean chatcolor) {
+		ProxiedPlayer ppl = CTBBCCrossChat.getProxiedPlayed(pl);
+		String prefix;
+		String color;
+		if (ppl.hasPermission("prefix.owner")) {
+			prefix = "&7[&bOwner&7]&6<player>";
+			color = "&3";
+			prefix.replace("<player>", pl);
+		} else if (ppl.hasPermission("prefix.admin")) {
+			prefix = "&7[&4Admin&7]&e<player>";
+			prefix.replace("<player>", pl);
+			color = "&f";
+		} else {
+			prefix = "&8<player>";
+			prefix.replace("<player>", pl);
+			color = "&7";
+		}
+
+		if (chatcolor) {
+			return CTBBCCrossChat.colorize(color);
+		} else {
+			return CTBBCCrossChat.colorize(prefix);
+		}
+
+	}
+
 }

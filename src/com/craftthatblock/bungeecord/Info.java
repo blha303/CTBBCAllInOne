@@ -16,8 +16,7 @@ public class Info extends Command {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		// Maybe add a reason? If you want that, tell it to me, I could add it
-		String prefix = ChatColor.GRAY + "[" + ChatColor.RED + "CTB"
+		String prefix = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "CTB"
 				+ ChatColor.GRAY + "]" + ChatColor.RESET + " ";
 		if (sender.hasPermission("chat.info") || sender.hasPermission("chat.*")) {
 			// if (sender instanceof ProxiedPlayer) {
@@ -28,10 +27,13 @@ public class Info extends Command {
 
 					sender.sendMessage(ChatColor.BLUE + "Info about "
 							+ p.getName().toString() + ":");
-					sender.sendMessage("IP: " + p.getAddress().toString());
-					sender.sendMessage("Server: "
+					sender.sendMessage(ChatColor.BLUE + "IP: "
+							+ ChatColor.WHITE + p.getAddress().toString());
+					sender.sendMessage(ChatColor.BLUE + "Server: "
+							+ ChatColor.WHITE
 							+ p.getServer().getInfo().getName().toString());
-					sender.sendMessage("Ping: " + p.getPing());
+					sender.sendMessage(ChatColor.BLUE + "Ping: "
+							+ ChatColor.WHITE + p.getPing());
 
 				} else {
 					sender.sendMessage(prefix + "Could not find player "
@@ -44,7 +46,13 @@ public class Info extends Command {
 			//
 			// }
 		} else {
-			// If player has no permission.
+			ProxiedPlayer p = ProxyServer.getInstance().getPlayer(args[0]);
+			sender.sendMessage(ChatColor.BLUE + "Info about "
+					+ p.getName().toString() + ":");
+			sender.sendMessage(ChatColor.BLUE + "Server: " + ChatColor.WHITE
+					+ p.getServer().getInfo().getName().toString());
+			sender.sendMessage(ChatColor.BLUE + "Ping: " + ChatColor.WHITE
+					+ p.getPing() + "  (Lower is better)");
 		}
 	}
 }

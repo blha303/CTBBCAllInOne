@@ -24,13 +24,18 @@ public class CTBBCCrossChat extends Plugin implements Listener {
 				.registerCommand(new Kick("bckick"));
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new Lobby("lobby"));
-
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new Info("info"));
 		ProxyServer.getInstance().getPluginManager()
 				.registerCommand(new GSay("gsay"));
 	}
 
+	
+	
+	
+	static String prefix = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "CTB"
+			+ ChatColor.GRAY + "]" + ChatColor.RESET + " ";
+	
 	public static CTBBCCrossChat getInstance() {
 		return plugin;
 	}

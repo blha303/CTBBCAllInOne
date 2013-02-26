@@ -18,10 +18,10 @@ public class GSay extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 
-		String prefix = ChatColor.GRAY + "[" + ChatColor.RED + "CTB"
-				+ ChatColor.GRAY + "]" + ChatColor.RESET + " ";
+		String prefix = CTBBCCrossChat.prefix;
+		
 		if (sender.hasPermission("chat.gsay") || sender.hasPermission("chat.*")) {
-			// if (sender instanceof ProxiedPlayer) {
+
 			if (args.length == 0) {
 				sender.sendMessage(prefix + "Usage: /gsay <message>");
 			} else {
@@ -34,14 +34,21 @@ public class GSay extends Command {
 				}
 
 				String message = builder.substring(0, builder.length() - 1);
+
+				String msg;
+				if (message.startsWith("&h")) {
+					message.replaceFirst("&h", "");
+					msg = message;
+				} else {
+					msg = prefix + message;
+				}
+
 				for (ProxiedPlayer player : ProxyServer.getInstance()
 						.getPlayers()) {
-					player.sendMessage(prefix + message);
+					player.sendMessage(msg);
 				}
 			}
-			// } else {
-			//
-			// }
+
 		} else {
 			// If player has no permission.
 		}
